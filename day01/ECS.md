@@ -22,5 +22,10 @@ aws ecs describe-container-instances --cluster default --container-instances con
 
 ``` 
 http://3.231.56.218:8080/swagger-ui/index.html
-http://3.231.56.218:8080/swagger-ui/index.html
+```
+
+### Follow The Instruction
+
+``` 
+https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/deploy-java-microservices-on-amazon-ecs-using-aws-fargate.html
 ```
