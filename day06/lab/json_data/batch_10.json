@@ -1,0 +1,379 @@
+{
+    "Starships": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-72453"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Hijacked by Bajoran terrorist Tahna Los. Became the first DS9 runabout to be destroyed when it crashed on a moon in the Gamma Quadrant."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-72454"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Captured Tahna Los. Rescued Vash from the Gamma Quadrant. Destroyed by a T'Lani Munitions Cruiser."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-72617"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Helps rescue Benjamin Sisko from the Jem'Hadar. Destroyed by the Jem'Hadar during the Obsidian Order/Tal Shiar attack on the Founders' homeworld in the Omarian Nebula."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-72701"
+                    },
+                    "ShipClass": {
+                        "S": "Nova"
+                    },
+                    "Description": {
+                        "S": "Commanded by Captain Harry Kim in an alternate future."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-72905"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Helps rescue Benjamin Sisko from the Jem'Hadar. Destroyed by the Cardassian terrorist group \"The True Way\"."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-72936"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Shrunk to 6.5 centimeters."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-73024"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Taken by Dax and Worf to rescue a Cardassian informant from the Dominion. Severely damaged by the Jem'Hadar en route to deliver diplomatic message to Grand Nagus Zek."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-73196"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Participates in botanical survey of Torad IV."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-73624"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Taken by Ezri Dax to search for Worf. Destroyed by the Jem'Hadar."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-73808"
+                    },
+                    "ShipClass": {
+                        "S": "Nova"
+                    },
+                    "Description": {
+                        "S": "Medical vessel temporarily commanded by Christine Vale in the novel Star Trek: The Fall - The Poisoned Chalice."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74210"
+                    },
+                    "ShipClass": {
+                        "S": "Defiant"
+                    },
+                    "Description": {
+                        "S": "Starfleet Academy Red Squad training ship. The vessel gets caught behind enemy lines after the outbreak of the Dominion War, suffered heavy losses among the standard crew and was subsequently commanded by the cadets of Red Squad. Destroyed by the Jem'Hadar after a failed attempt to destroy a new Dominion vessel. Only three people survived the destruction of the ship, (Jake Sisko, Nog, and Collins, a member of Red Squad)."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74350"
+                    },
+                    "ShipClass": {
+                        "S": "Defiant"
+                    },
+                    "Description": {
+                        "S": "Commanded by Captain Shinoda during the Dominion War in the short story \"Safe Harbors\"."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74413"
+                    },
+                    "ShipClass": {
+                        "S": "Nova"
+                    },
+                    "Description": {
+                        "S": "Starfleet Intelligence attached science vessel temporarily commanded by Jaryd Harker, MD in the novel Star Trek: Adamant."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74562"
+                    },
+                    "ShipClass": {
+                        "S": "Intrepid"
+                    },
+                    "Description": {
+                        "S": "Captain Christine McDonald's new command in the book Star Trek: Preserver. Destroyed in battle with USS Enterprise (NCC-1701-E) and Ferengi Marauder-class starship Leveraged Buyout around planet Halkan."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74600"
+                    },
+                    "ShipClass": {
+                        "S": "Intrepid"
+                    },
+                    "Description": {
+                        "S": "Pathfinder vessel. Part of Battle Group Omega sent to intercept Reman warship Scimitar."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74602"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "Stolen by Founder in failed attempt to destroy the Bajoran sun. Destroyed by a Protomatter Device also killing a Founder."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74656"
+                    },
+                    "ShipClass": {
+                        "S": "Intrepid"
+                    },
+                    "Description": {
+                        "S": "Primary setting of Star Trek: Voyager where it is commanded by Captain Kathryn Janeway. Commanded by Captain Chakotay in the \"Enemy of My Enemy\" book series, then commanded by Captain Afsarah Eden in the novel Unworthy, then by Captain Chakotay as final commander in the novels Full Circle and Children of the Storm."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74705"
+                    },
+                    "ShipClass": {
+                        "S": "Intrepid"
+                    },
+                    "Description": {
+                        "S": "Transports Federation personnel to a summit on Romulus. Flagship of Vice Admiral Ross during parts of the Dominion War."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74710"
+                    },
+                    "ShipClass": {
+                        "S": "Intrepid"
+                    },
+                    "Description": {
+                        "S": "Designed for deep space exploration and scientific discovery. It is the third ship in the Intrepid-class, having been commissioned at the same time as the USS Voyager. It has a cruising speed of warp 6 and a maximum sustainable speed of warp 9.975. Its armaments include ablative armor and quantum torpedoes. Commanded by Capt. Rafael Martinez. It appears in the Geek & Sundry web show Shield of Tomorrow."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-74791"
+                    },
+                    "ShipClass": {
+                        "S": "Undetermined"
+                    },
+                    "Description": {
+                        "S": "Ezri Tigan's prior assignment before transferring to Deep Space Nine."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-75001"
+                    },
+                    "ShipClass": {
+                        "S": "Defiant"
+                    },
+                    "Description": {
+                        "S": "Mentioned in both the books The Return and Preserver, lost under command of Captain John Scott Lewinski attempting to set a new warp speed record with recovered Borg transwarp drive."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-75353"
+                    },
+                    "ShipClass": {
+                        "S": "Danube"
+                    },
+                    "Description": {
+                        "S": "First runabout to be named after a non-Earth river. Assigned to Deep Space 9. Appeared in Worlds of Star Trek: Deep Space Nine, Volume Three \u2013 The Dominion: Olympus Descending."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-75418"
+                    },
+                    "ShipClass": {
+                        "S": "Sovereign"
+                    },
+                    "Description": {
+                        "S": "The Defiant class starship, USS Valiant NCC-74210 was destroyed in the year 2374 by the Jem'Hadar after a failed attempt to destroy a new Dominion Battleship class vessel. The new Valiant was put into active service just one year later as a Sovereign class starship."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-75689"
+                    },
+                    "ShipClass": {
+                        "S": "Sovereign"
+                    },
+                    "Description": {
+                        "S": "Sacrificed itself against the Borg in 2381 in Star Trek: Destiny."
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Registry": {
+                        "S": "NCC-77024"
+                    },
+                    "ShipClass": {
+                        "S": "Mulciber"
+                    },
+                    "Description": {
+                        "S": "Commanded by Captain Tillum Drafar. Part of \"Project Full Circle\" in the Star Trek: Voyager novel Full Circle."
+                    }
+                }
+            }
+        }
+    ]
+}
