@@ -1,0 +1,30 @@
+{
+  "Starships": {
+    "Keys": [
+      {
+        "ShipClass": {
+          "S": "Defiant"
+        },
+        "Registry": {
+          "S": "NCC-75633"
+        }
+      },
+      {
+        "Registry": {
+          "S": "NAR-32450"
+        },
+        "ShipClass": {
+          "S": "Undetermined"
+        }
+      },
+      {
+        "Registry": {
+          "S": "NCC-57302"
+        },
+        "ShipClass": {
+          "S": "Springfield"
+        }
+      }
+    ]
+  }
+}

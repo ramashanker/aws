@@ -1,0 +1,43 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation for EC2
+Parameters:
+  ImageId:
+    Description: AMI to use eg. ami-0889a44b331db0194
+    Default: ami-0889a44b331db0194
+    Type: String
+  VpcId:
+    Description: The VPC used by the SG
+    Type: String
+Resources:
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !Ref ImageId
+      SecurityGroupIds:
+        - !GetAtt SecurityGroup.GroupId
+      UserData:
+        'Fn::Base64':
+          !Sub |
+            #!/usr/bin/env bash
+            yum -y update
+            su ec2-user
+            sudo yum install
+            sudo service httpd start
+            sudo service httpd enable
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: 'Security group decription'
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          Description: 'Allows traffic from LB to :80 (instance)'
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+Outputs:
+  PublicIp:
+    Value: !GetAtt WebServer.PublicIp
+
