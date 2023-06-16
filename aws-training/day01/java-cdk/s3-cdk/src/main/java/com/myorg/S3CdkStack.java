@@ -1,19 +1,16 @@
 package com.myorg;
-
-package com.myorg;
-
 import software.amazon.awscdk.*;
 import software.amazon.awscdk.services.s3.Bucket;
 
-public class HelloCdkStack extends Stack {
-    public HelloCdkStack(final App scope, final String id) {
+public class S3CdkStack extends Stack {
+    public S3CdkStack(final App scope, final String id) {
         this(scope, id, null);
     }
 
-    public HelloCdkStack(final App scope, final String id, final StackProps props) {
+    public S3CdkStack(final App scope, final String id, final StackProps props) {
         super(scope, id, props);
 
-        Bucket.Builder.create(this, "MyFirstBucket")
+        Bucket.Builder.create(this, "MyFirstBucket-001")
                 .versioned(true).build();
     }
 }
