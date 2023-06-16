@@ -1,1 +1,6 @@
-# Day1 Topics
+# Day10 Topics
+
+• DynamoDB
+• DynamoDB: Key-Value Database
+• Serverless REST API Architecture: APIGW, Lambda & DynamoDB
+• Serverless DynamoDB Event Processor Architecture with DynamoDB Streams

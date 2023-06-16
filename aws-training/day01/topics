@@ -1,1 +1,7 @@
 # Day1 Topics
+. AWS overview
+• Identity Access Management of AWS
+• Getting Started: AWS CDK Prerequisites & Installation
+• Create your first CDK Stack & Deploy it
+• Create IAM Users, Groups, IAM Role, Inline & Managed Policy
+

@@ -1,1 +1,7 @@
-# Day1 Topics
+# Day5 Topics
+• Relational Database Service (RDS)
+• Secrets Manager
+• Create AWS SSM Parameter & AWS Secrets
+• Create RDS Database
+• Import pre-existing Cloud formation templates into CDK
+

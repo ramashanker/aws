@@ -1,1 +1,7 @@
-# Day1 Topics
+# Day8 Topics
+• Schedule your Lambda Function: Cron in the cloud
+• Grant Least Privileges to your Lambda Functions
+• API Gateway: An HTTP endpoint for your Lambda function
+• SNS,SES and SQS
+• Create SNS Topic & Subscriptions
+• SQS: Fully Managed Message Queues for Microservices
