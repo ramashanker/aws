@@ -1,1 +1,6 @@
-# Day1 Topics
+# Day4 Topics
+• Amazon Virtual Private Cloud (VPC)
+• Build Multi-AZ Production Ready Custom VPC
+• Add Tags to CDK Resources on Creation
+• Tagging at Scale: Easily Add Tags to ALL Resources in the Stack
+• Import Pre-Existing External Resources: S3, VPC
