@@ -7,18 +7,36 @@
 
 ## CDK SET UP For python
 
+#### Linux
 | Steps   | command                       | output  |
 |---------|-------------------------------|---------|
 | Install | sudo pip3 install aws-cdk-lib | success |
 | import  | import aws_cdk as cdk         | success |
 
 
+#### Windows
+| Steps   | command                  | output  |
+|---------|--------------------------|---------|
+| Install | pip3 install aws-cdk-lib | success |
+| import  | import aws_cdk as cdk    | success |
+
+
+
 ## CDK SET UP For typescript
+
+#### Linux
+
 | Steps   | command                             | output  |
 |---------|-------------------------------------|---------|
 | Install | sudo npm install -g aws-cdk-lib     | success |
 | import  | import * as cdk from 'aws-cdk-lib'; | success |
 
+#### Windows
+
+| Steps   | command                             | output  |
+|---------|-------------------------------------|---------|
+| Install |  npm install -g aws-cdk-lib     | success |
+| import  | import * as cdk from 'aws-cdk-lib'; | success |
 
 ## CDK SET UP For java
 | Steps   | command                  | output  |
