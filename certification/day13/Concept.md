@@ -35,8 +35,34 @@
     S3 Object Ownership has two settings: 
         1. Object writer – The uploading account will own the object. 
         2. Bucket owner preferred – The bucket owner will own the object if the object is uploaded with the bucket-owner-full-control canned ACL
-    
+### AWS CLI for S3 for pagination
+    Amazon S3 has a default page size of 1000
+    the AWS CLI calls a service's API to populate the list.
 
+    --page-size: You can use the --page-size option to specify that the AWS CLI requests a smaller number of items from each call to the AWS service
+
+    --max-items: Use to fetch 
+
+    --starting-token
+
+    Example: results of an S3 List to show 100 results per page to your users and minimize the number of API calls 
+    aws s3api list-objects \
+    --bucket my-bucket \
+    --max-items 100 \
+    --starting-token eyJNYXJrZXIiOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAxfQ==
+
+### Macie:Sensitive data analysis
+    Amazon Macie discovers sensitive data using machine learning and pattern matching, provides visibility into data security risks, 
+    and enables automated protection against those risks.
+
+### Versioning
+    If you overwrite an object (file), it results in a new object version in the bucket
+    when you delete an object (file), Amazon S3 inserts a delete marker,which becomes the current object version and you can restore the previous version
+    Any file that was unversioned before enabling versioning will have the 'null' version
+
+### S3 Select:
+    You would like to retrieve a CVS data and only 3 columns out of the 10
+    
 ## SQS:
 
 ### ApproximateNumberOfMessagesVisible
@@ -59,6 +85,15 @@
     Server-side encryption (SSE) lets you transmit sensitive data in encrypted queues. 
     SSE protects the contents of messages in queues using keys managed in AWS Key Management Service (AWS KMS).
 
+### MessageGroupId
+    The message group ID is the tag that specifies that a message belongs to a specific message group. 
+    Messages that belong to the same message group are always processed one by one, in a strict order relative to the message group
+
+### MessageDeduplicationId: 
+    make sure that duplicate messages should not be sent to SQS as this would cause application failure
+    The message deduplication ID is the token used for the deduplication of sent messages. If a message with a particular 
+    message deduplication ID is sent successfully, any messages sent with the same message deduplication ID are accepted successfully 
+    but aren't delivered during the 5-minute deduplication interval
 
 ## Kinensis:
 
@@ -152,6 +187,9 @@
     You need to create an IAM role in Account B and set Account A as a trusted entity. 
     Then attach a policy to this IAM role such that it delegates access to Amazon S3
 
+### EC2 read data from non public s3 bucket
+    Set up an EC2 service role(AWS services) with read-only permissions for the S3 bucket and attach the role to the EC2 instance profile
+
 ## Auto Scaling Group(ASG)
 
 ### Boundry of ASg:
@@ -191,6 +229,9 @@
     You can attach an EBS volume to an EC2 instance in the same Availability Zone.
     
     EBS volumes are AZ locked
+### ElsticIP
+    An Elastic IP address is allocated to your AWS account, and is yours until you release it
+    An Elastic IP address is static; it does not change over time
 
 ## Load Balancer
 
@@ -273,6 +314,17 @@
     Can download and install in on prem system to cature and relay data to x-ray service
     It use UDP port 2000 to listen 
 
+### Annotation
+    XRay traces to search and filter through them efficiently.
+    Annotations are simple key-value pairs that are indexed for use with filter expressions. Use annotations to record data that 
+    you want to use to group traces in the console, or when calling the GetTraceSummaries API.
+
+### AWS_XRAY_DAEMON_ADDRESS
+    Set the host and port of the X-Ray daemon listener. By default, the SDK uses 127.0.0.1:2000 for both trace data (UDP) and sampling (TCP). 
+    Use this variable if you have configured the daemon to listen on a different port or if it is running on a different host.
+
+    
+
 ## Lambda
 
 ### Lambda Authorizer
@@ -292,6 +344,7 @@
     There is no charge for configuring reserved concurrency for a function
 
 ### Provisioned concurrency
+    Minimize startup time for lambda or optimize the startup time of the Lambda function
     Provisioned concurrency is the number of pre-initialized execution environments you want to allocate to your function. 
     These execution environments are prepared to respond immediately to incoming function requests. 
     Configuring provisioned concurrency incurs charges to your AWS account
@@ -303,6 +356,9 @@
     The maximum amount of memory available to the Lambda function at runtime is 10,240 MB. 
     Your Lambda function was deployed with 10,240 MB of RAM, but it seems your code requested or used more than that, so the Lambda function failed.
 
+### Dependency
+    dependencies already provided by AWS in your Lambda Runtime (aws-sdk and cfn-response and many other AWS related libraries are preloaded via, 
+    for example, boto3 (python) in the lambda instances.)
 ## DynamoDB:
 
 ### Parallel Scan:
@@ -313,6 +369,8 @@
 ### FilterExpression
     A filter expression determines which items within the Scan results should be returned to you. All of the other results are discarded.
     A filter expression is applied after a Scan finishes, but before the results are returned.
+    
+    similar to WHERE clauses in SQL
 
     The below example shows how to use the filter expression to get all projects that contain the word "Project" in their name.
     TableName: 'projects-manager',
@@ -324,8 +382,13 @@
     
 
 ### Project expression:
+    allow you to retrieve a subset of the attributes coming from a DynamoDB scan
     A projection expression is a string that identifies the attributes that you want. To retrieve a single attribute, specify its name. 
     For multiple attributes, the names must be comma-separated.
+    
+    Its similar to select column in sql.
+    SELECT name,is_active FROM customers    
+
     Ex:
     aws dynamodb get-item \
     --table-name ProductCatalog \
@@ -376,21 +439,35 @@
     DynamoDB has two built-in backup methods (On-demand, Point-in-time recovery) 
     that write to Amazon S3, but you will not have access to the S3 buckets that are used for these backups.
 
+### Indexing
+    AWS DynamoDB being a No SQL database doesn’t support queries such as SELECT with a condition such as the following query.
+    SELECT * FROM Users WHERE email='username@email.com';
+    It is possible to obtain the same query result using the DynamoDB scan operation. 
+    However, scan operations access every item in a table which is slower than query operations that access items at specific indices
+
 ### GSI
-    GSI Example
-    Consider this table that contains Uuid as primary key, UserId and Data attributes.
+    An index with a partition key and a sort key that can be different from those on the base table.
+    A global secondary index is considered "global" because queries on the index can span all of the data in the base table, across all partitions
+    Consider this table that contains Uuid (as primary key), UserId and Data attributes.
 
     | Uuid(Partition Key) | UserId | Data |
-    With this base table key schema, it can answer queries to retrieve data for a uuid. However, to get all data for a user id, 
+    With this base table key schema, it can answer queries to retrieve data for a uuid. However, to get all data for a UserId, 
     it would have to do a scan query and get all the items that have matching user id.
 
     To be able to get all data for a user efficiently, you can use a global secondary index that has UserId as its primary key (partition key). 
     Using this index, you can do a query to retrieve all data for a user.
 
     In short, use DynamoDB Global Secondary Index when you need to support querying non-primary key attribute of a table.
+    Ex: 
+    SELECT * FROM user WHERE UserId='1234'
 
 
 ### LSI
+    An index that has the same partition key as the base table, but a different sort key. A local secondary index is "local" in the sense that 
+    every partition of a local secondary index is scoped to a base table partition that has the same partition key value.
+
+    LSI use the RCU and WCU of the main table
+
     Local Secondary Index enables different sorting order of the same list of items as LSI uses the same partition key as base table but different sort key. 
     Consider this table that uses composite keys: UserId as partition key, ArticleName as sort key and other attributes: DateCreated and Data.
 
@@ -402,10 +479,25 @@
     With a local secondary index that has UserId as its partition key and DateCreated as its sort key, you can retrieve a user’s articles sorted by date created.
 
     |UserId(Partition Key) | DateCreated(Sort Key) | ArticleName | Data|
+
     And, use DynamodB Local Secondary index when you need to support querying items with different sorting order of attributes.
-    
+    Ex:
+    SELECT * FROM user ORDER BY DateCreated
 
 ## ElastiCache
+
+### Write Through strategy
+    The write-through strategy adds data or updates data in the cache whenever data is written to the database.
+
+### Lazy Loading strategy without TTL
+    Lazy Loading is a caching strategy that loads data into the cache only when necessary. Whenever your application requests data, 
+    it first requests the ElastiCache cache. If the data exists in the cache and is current,ElastiCache returns the data to your application. 
+    If the data doesn't exist in the cache or has expired, your application requests the data from your data store.
+
+### Lazy Loading strategy with TTL
+    In the case of Lazy Loading, the data is loaded onto the cache whenever the data is missing from the cache. 
+    In case the blog gets updated, it won't be updated from the cache unless that cache expires (in case you used a TTL)
+    
 
 ### Elasticache for redis
     ElastiCache for Redis with cluster mode enabled to enhance reliability and availability with little change to your existing workload.
@@ -445,7 +537,14 @@
 ### In place deployment
     An in-place deployment allows you to deploy your application without creating new infrastructure; 
     however, the availability of your application can be affected during these deployments
+
+### Canary Deployment
+    the canary deployement receives a small percentage of API traffic and the production release takes up the rest
+
+### Cron job
+    Elastic Beanstalk environment should you set up for performing the repetitive tasks with Setup a Worker environment and a cron.yaml file
     
+
 ## Code Deploy:
     The CodeDeploy agent cleans up these artifacts to conserve disk space.
 
@@ -492,10 +591,22 @@
     to verify that it hasn’t been tampered with
     you can only have up to two active CloudFront key pairs per AWS account
 
+### CloudFront CACHE
+    CloudFront can cache different versions of your content based on the values of query string parameters.   
+    Then specify the parameters that you want CloudFront to use as a basis for caching in the Query string whitelist field
+
+
 ## VPC
 
 ### VPC Flow Logs - 
     VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC
+### VPC endpoint
+    A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by 
+    AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection
+    There are two types of VPC endpoints: 
+    interface endpoints:  An interface endpoint is an elastic network interface with a private IP address 
+    gateway endpoints:A gateway endpoint is a gateway that you specify as a target for a route in your 
+                      route table for traffic destined to a supported AWS service
 
 ## CodeCommit
 
@@ -510,7 +621,15 @@
     Use the AWS CLI associate-kms-key command and specify the KMS key ARN
     To associate the CMK with an existing log group, you can use the associate-kms-key command.
 
+### CloudWatch Events
+    Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in Amazon Web Services (AWS) resources    
+
+### CloudWatch agent
+    Collect system-level metrics from on-premises servers
+    Collect logs from Amazon EC2 instances and on-premises servers, running either Linux or Windows Server
+    CloudWatch agent to send data from an on-premises server
     
+
 ## CloudTrail
 
 ### Audit
@@ -518,6 +637,11 @@
 
 ## STS
     AWS provides AWS Security Token Service (AWS STS) as a web service that enables you to request temporary, limited-privilege credentials for user.
+    AWS STS supports AWS CloudTrail, a service that records AWS calls for your AWS account and delivers log files to an Amazon S3 bucket
+    It is not supported with API Gateway
+### Time of validity
+    Credentials that are created by using account credentials can range from 900 seconds (15 minutes) up to a maximum of 3,600 seconds (1 hour), 
+    with a default of 1 hour
 
 ### Exception
     Encoded authorization failure message:AWS STS decode-authorization-message
@@ -527,3 +651,8 @@
 ### Stateless
     Nacl is stateless:If configure inbound need explicitely to configure outbound policy
     Network ACLs to allow outbound traffic on ports 1024 - 65535
+
+## Code Build
+
+### Its use buildspec.yml file 
+    For automatically encript at the end it can use AWS KMS 
