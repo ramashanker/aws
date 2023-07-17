@@ -14,6 +14,7 @@
     Server-side encryption with AWS KMS keys (SSE-KMS) is provided through an integration of the AWS KMS service with Amazon S3
     --server-side-encryption aws:kms
     Correct the policy of the IAM user to allow the kms:GenerateDataKey action
+    you have the option to create and manage encryption keys yourself
 
 ### Dual-layer server-side encryption with AWS Key Management Service (AWS KMS) keys (DSSE-KMS)
     Dual-layer server-side encryption with AWS KMS keys (DSSE-KMS) is similar to SSE-KMS, 
@@ -63,7 +64,16 @@
 ### S3 Select:
     You would like to retrieve a CVS data and only 3 columns out of the 10
     
+### Bucket deletion:
+    If you delete a bucket and immediately list all buckets, the deleted bucket might still appear in the list 
 ## SQS:
+
+### Maximum message to retrieve
+    10
+
+### Visibility timeout
+    The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The maximum is 12 hours.
+    ChangeMessageVisibility: use to change the default value
 
 ### ApproximateNumberOfMessagesVisible
 
@@ -105,11 +115,22 @@
 
 ### AWS Kinesis Data Streams
      KDS can continuously capture gigabytes of data per second from hundreds of thousands of sources such as website clickstreams
+    
+    Amazon Kinesis Data Streams that automatically encrypts data before it's at rest by using an AWS KMS customer master key (CMK) you specify
+
+    your data is encrypted at rest within the Kinesis Data Streams service. Also, the HTTPS protocol ensures that data inflight is encrypted as well
+
+### Fanout feature of Kinesis Data Streams
+    You should use enhanced fan-out if you have multiple consumers retrieving data from a stream in parallel. 
+    With enhanced fan-out developers can register stream consumers to use enhanced fan-out and receive their 
+    own 2MB/second pipe of read throughput per shard, and this throughput automatically scales with the number of shards in a stream.
+
 
 ### AWS Kinensis Data Firehose:
     Amazon Kinesis Data Firehose is the easiest way to load streaming data into data stores and analytics tools. It can capture, 
     transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near real-time analytics 
 
+    
 ### AWS Kinesis Data Analytics 
     Amazon Kinesis Data Analytics is the easiest way to analyze streaming data in real-time. 
     You can quickly build SQL queries and sophisticated Java applications using built-in templates and operators for common processing
@@ -150,6 +171,12 @@
     Trust policies define which principal entities (accounts, users, roles, and federated users) can assume the role.
     The IAM service supports only one type of resource-based policy called a role trust policy,
     which is attached to an IAM role.
+    
+### Execution Role:
+    The primary role in account A that gives the lambda function permission to do its work
+
+### Assumed Role
+    A role in account B that the lambda function in account A assumes to gain access to cross-account resources.
 
 ### AWS Organizations Service Control Policies (SCP)
     Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization
@@ -197,6 +224,10 @@
 
 ## EC2
 
+### DeleteOnTermination
+    DeleteOnTermination attribute for each attached EBS volume determines whether to preserve or delete the volume. By default, 
+    the DeleteOnTermination attribute is set to True for the root volume and is set to False for all other volume types
+
 ### Dedicated instance
     Dedicated to single customer,Its can share hardware with other instance
 
@@ -219,6 +250,10 @@
     EFS volumes provide a simple, scalable, and persistent file storage for use with your Amazon ECS tasks. 
     With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files
 
+    Amazon Elastic File System (EFS) Standard–IA storage class 
+    The Standard–IA storage class reduces storage costs for files that are not accessed every day
+    
+
 ### EBS
     Amazon Elastic Block Store (Amazon EBS) is an easy-to-use, scalable, high-performance block-storage service designed for Amazon Elastic Compute Cloud
     Amazon EBS works with AWS KMS to encrypt and decrypt your EBS volume
@@ -229,13 +264,20 @@
     You can attach an EBS volume to an EC2 instance in the same Availability Zone.
     
     EBS volumes are AZ locked
+
+    EBS Encryption by default is a Region-specific setting. If you enable it for a Region, you cannot disable it for individual 
+    volumes or snapshots in that Region
+
 ### ElsticIP
     An Elastic IP address is allocated to your AWS account, and is yours until you release it
     An Elastic IP address is static; it does not change over time
 
+### EC2 Volume
+    Amazon EC2 Auto Scaling cannot add a volume to an existing instance if the existing volume is approaching capacity.
+
 ## Load Balancer
 
-###ALB
+### ALB
 
 #### ALB access log:
     Elastic Load Balancing provides access logs that capture detailed information about requests sent to your load balancer. 
@@ -296,7 +338,8 @@
 ### STS
     AWS Security Token Service (AWS STS) is a web service that enables you to request temporary, limited-privilege credentials for 
     AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). 
-    However, it is not supported by API Gateway.
+    However, it is not supported for access API Gateway.
+    But (STS) is used by API Gateway for logging data to CloudWatch logs.
     
 ## SSM Parameter Store
     store data such as passwords, database strings, and license codes as parameter values. 
@@ -338,12 +381,15 @@
     In Lambda, concurrency is the number of in-flight requests your function is handling at the same time. 
     There are two types of concurrency controls available
 
-### Reserved concurrency
+### Reserved concurrency: limit the lambda running concurency
+    
     Reserved concurrency is the maximum number of concurrent instances you want to allocate to your function. 
+    Ensure no other function can use that concurrency.
+
     When a function has reserved concurrency, no other function can use that concurrency. 
     There is no charge for configuring reserved concurrency for a function
 
-### Provisioned concurrency
+### Provisioned concurrency: cold start improve
     Minimize startup time for lambda or optimize the startup time of the Lambda function
     Provisioned concurrency is the number of pre-initialized execution environments you want to allocate to your function. 
     These execution environments are prepared to respond immediately to incoming function requests. 
@@ -484,6 +530,10 @@
     Ex:
     SELECT * FROM user ORDER BY DateCreated
 
+### Global tables
+    This can significantly reduce latency for your users. So, reducing the distance between the client and the DynamoDB endpoint is an 
+    important performance fix to be considered.
+
 ## ElastiCache
 
 ### Write Through strategy
@@ -547,6 +597,9 @@
 
 ## Code Deploy:
     The CodeDeploy agent cleans up these artifacts to conserve disk space.
+### Deployement Group
+    The deployment group contains settings and configurations used during the deployment
+    Some settings, such as rollbacks, triggers, and alarms can be configured for deployment groups for any compute platform.
 
 ## Express workflow
     Express Workflows support event rates of more than 100,000 per second.
@@ -591,10 +644,17 @@
     to verify that it hasn’t been tampered with
     you can only have up to two active CloudFront key pairs per AWS account
 
+### Fail over
+    CloudFront only sends requests to the secondary origin after a request to the primary origin fails.
+
+
 ### CloudFront CACHE
     CloudFront can cache different versions of your content based on the values of query string parameters.   
     Then specify the parameters that you want CloudFront to use as a basis for caching in the Query string whitelist field
 
+### CloudFront distribution
+    When you associate a CloudFront function with a CloudFront distribution, CloudFront intercepts requests and responses 
+    at CloudFront edge locations and passes them to your function.
 
 ## VPC
 
@@ -647,6 +707,9 @@
     Encoded authorization failure message:AWS STS decode-authorization-message
     If a user is not authorized to perform an action that was requested, the request returns a Client.UnauthorizedOperation response (an HTTP 403 response). 
 
+### Cloud trail for EBS
+    AWS CloudTrail event logs for 'CreateVolume' aren't available for EBS volumes created during an Amazon EC2 launch
+
 ## NACL
 ### Stateless
     Nacl is stateless:If configure inbound need explicitely to configure outbound policy
@@ -656,3 +719,9 @@
 
 ### Its use buildspec.yml file 
     For automatically encript at the end it can use AWS KMS 
+
+## AWS KMS
+
+### Size for KMS
+    Maximum size supported for KMS is 4 KB
+
