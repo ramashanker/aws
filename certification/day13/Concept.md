@@ -76,6 +76,7 @@
     ChangeMessageVisibility: use to change the default value
 
 ### ApproximateNumberOfMessagesVisible
+    The number of messages available for retrieval from the queue.
 
     To illustrate with an example, 
     let's say that the current ApproximateNumberOfMessages is 1500 and 
@@ -114,7 +115,7 @@
     or the requested data is too large for the available throughput. Reduce the frequency or size of your requests.
 
 ### AWS Kinesis Data Streams
-     KDS can continuously capture gigabytes of data per second from hundreds of thousands of sources such as website clickstreams
+    KDS can continuously capture gigabytes of data per second from hundreds of thousands of sources such as website clickstreams
     
     Amazon Kinesis Data Streams that automatically encrypts data before it's at rest by using an AWS KMS customer master key (CMK) you specify
 
@@ -128,7 +129,8 @@
 
 ### AWS Kinensis Data Firehose:
     Amazon Kinesis Data Firehose is the easiest way to load streaming data into data stores and analytics tools. It can capture, 
-    transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near real-time analytics 
+    transform, and load streaming data into 
+    Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk, enabling near real-time analytics 
 
     
 ### AWS Kinesis Data Analytics 
@@ -149,8 +151,6 @@
 
 ### shards
     A shard is a uniquely identified sequence of data records in a stream. A stream is composed of one or more shards, each of which provides a fixed unit of capacity.
-
-    
 
 ## IAM
 
@@ -178,7 +178,7 @@
 ### Assumed Role
     A role in account B that the lambda function in account A assumes to gain access to cross-account resources.
 
-### AWS Organizations Service Control Policies (SCP)
+### AWS Organizations Service Control Policies (SCP): Limit permisiion
     Service control policies (SCPs) are a type of organization policy that you can use to manage permissions in your organization
     The SCP limits permissions for entities in member accounts, including each AWS account root user. 
     An explicit deny in any of these policies overrides the allow.
@@ -192,7 +192,7 @@
     AWS supports permissions boundaries for IAM entities (users or roles). A permissions boundary is an advanced feature for using a managed policy 
     to set the maximum permissions that an identity-based policy can grant to an IAM entity
 
-### IAM Access Analyzer
+### IAM Access Analyzer: identify risk of access resources
     identify unintended access to your resources and data, which is a security risk
     IAM reports the last-used timestamp that represents when a role was last used to make an AWS request.
 
@@ -201,7 +201,7 @@
     You also have an account in China (Beijing) in the aws-cn partition. 
     You can't use an Amazon S3 resource-based policy in your account in China (Beijing) to allow access for users in your standard AWS account.
 
-### Access Advisor feature on IAM console
+### Access Advisor feature on IAM console:identify unused role
     To help identify the unused roles,
     dentify, analyze, and then confidently remove unused roles.
 
@@ -239,7 +239,8 @@
 
 ### Reserved Instance
     A Reserved Instance billing benefit can apply to a maximum of 3600 seconds (one hour) of instance usage per clock-hour.
-    When you purchase a Reserved Instance for a specific Availability Zone, it's referred to as a Zonal Reserved Instance.
+    When you purchase a Reserved Instance for a specific Availability Zone, 
+    it's referred to as a Zonal Reserved Instance.
     This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered 
     by Savings Plans or regional Reserved Instances.
 
@@ -354,7 +355,7 @@
     You can use X-Ray to collect data across AWS Accounts
 
 ### X-Ray Daemon:
-    Can download and install in on prem system to cature and relay data to x-ray service
+    Can download and install in on prem system to capture and relay data to x-ray service
     It use UDP port 2000 to listen 
 
 ### Annotation
@@ -389,7 +390,7 @@
     When a function has reserved concurrency, no other function can use that concurrency. 
     There is no charge for configuring reserved concurrency for a function
 
-### Provisioned concurrency: cold start improve
+### Provisioned concurrency: cold start improve: configure auto scale 
     Minimize startup time for lambda or optimize the startup time of the Lambda function
     Provisioned concurrency is the number of pre-initialized execution environments you want to allocate to your function. 
     These execution environments are prepared to respond immediately to incoming function requests. 
@@ -725,3 +726,11 @@
 ### Size for KMS
     Maximum size supported for KMS is 4 KB
 
+## RDS
+
+### Read replicas
+    Read Replicas can also be created in a different Region.
+    Using a cross-Region Read Replica can help ensure that you get back up and running if you experience a regional availability issue
+    Automated backups are limited to a single AWS Region 
+    while manual snapshots and Read Replicas are supported across multiple Regions.
+    
