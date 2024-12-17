@@ -657,11 +657,27 @@
     When you associate a CloudFront function with a CloudFront distribution, CloudFront intercepts requests and responses 
     at CloudFront edge locations and passes them to your function.
 
-## VPC
 
-### VPC Flow Logs - 
+# Network Address Translation NAT :
+
+## NAT gateway 
+    Managed by AWS
+    A NAT gateway is a Network Address Translation (NAT) service
+    You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC but external services cannot initiate a connection with those instances.
+    
+## NAT instances : Port forwarding ,act as bastion server,
+    Managed by you
+    A NAT instance provides network address translation (NAT) . EC2 instance manually configured to act as a NAT device.
+    NAT instance to allow resources in a private subnet to communicate with destinations outside the virtual private cloud (VPC) but they can't receive inbound traffic initiated on the internet.
+    
+    
+# VPC
+
+## VPC Flow Logs 
+
     VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC
-### VPC endpoint
+
+## VPC endpoint
     A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by 
     AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection
     There are two types of VPC endpoints: 
@@ -700,6 +716,7 @@
     AWS provides AWS Security Token Service (AWS STS) as a web service that enables you to request temporary, limited-privilege credentials for user.
     AWS STS supports AWS CloudTrail, a service that records AWS calls for your AWS account and delivers log files to an Amazon S3 bucket
     It is not supported with API Gateway
+
 ### Time of validity
     Credentials that are created by using account credentials can range from 900 seconds (15 minutes) up to a maximum of 3,600 seconds (1 hour), 
     with a default of 1 hour
