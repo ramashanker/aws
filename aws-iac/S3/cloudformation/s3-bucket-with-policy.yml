@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  MyS3Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "rama-bucket-001"
+      AccessControl: "Private"
+
+  MyIAMRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: "S3AccessRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: "ec2.amazonaws.com"  # Update this to the appropriate service (e.g., lambda.amazonaws.com) who is going to access s3 bucket
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: "S3AccessPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "s3:GetObject"
+                  - "s3:PutObject"
+                  - "s3:DeleteObject"
+                Resource: !Sub "${MyS3Bucket.Arn}/*"
+
+  MyS3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref MyS3Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowAccessToIAMRole
+            Effect: Allow
+            Principal:
+              AWS: !GetAtt MyIAMRole.Arn
+            Action:
+              - "s3:GetObject"
+              - "s3:PutObject"
+              - "s3:DeleteObject"
+            Resource: !Sub "${MyS3Bucket.Arn}/*"
