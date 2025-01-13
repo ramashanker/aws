@@ -542,17 +542,17 @@
     is ideal for multi-petabyte or Exabyte-scale digital media migrations and data centers shutdowns.
 
 ### AWS Snowball(Large)
+    10TB < DATA < 10PB
 
     AWS Snowball is a data migration and edge computing service offered by Amazon Web Services (AWS). 
     It helps move large amounts of data between on-premises locations and AWS, either for initial cloud migration, disaster recovery, or as part of hybrid cloud workflows.
     Snowball devices are physically shipped to your location, allowing you to transfer data without relying on slow or costly network connections.
-    10TB < DATA < 10PB
+    
 
 ### SnowCone(smallest)
 
     AWS Snowcone is the smallest member of the AWS Snow Family, designed for edge computing, data migration, and storage. 
     It is a lightweight, portable, and rugged device ideal for environments with limited space, power, or connectivity.
-
 
 
 ## AWS Snowball Edge Compute
@@ -863,7 +863,7 @@
     8) Network Access Contol Lists(NACL):   FireWall for controlling traffic in and out of subnet(s)
     9) Customer Gateway:                    A physical device or software application on the customer side of the Site-to-Site VPN connection.
     10) VPC Endpoint:                       VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink
-    12) Security Group:
+    12) Security Group:                     protect access
     13) AWS PrivateLink:                    private connectivity between VPCs, AWS services, and on-premises applications
     14) AWS Direct Connect:                 dedicated network connection from your premises to AWS
 
@@ -1758,22 +1758,6 @@
     
     FSx for ONTAP is the only file system that supports accessed by Windows, Mac, and Linux-based Amazon EC2 instances usimg SMB and NFS
 
-# Amazon GuardDuty :  FIND malicious activity
-
-    Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts, 
-    workloads, and data stored in Amazon S3. With the cloud, the collection and aggregation of account and network activities is simplified, 
-    but it can be time-consuming for security teams to continuously analyze event log data for potential threats.
-    
-    Amazon GuardDuty analyzes tens of billions of events across multiple AWS data sources, such as AWS CloudTrail events, Amazon VPC Flow Logs, and DNS logs.
-
-# Amazon Inspector
-
-    security assessment service that helps improve the security and compliance 
-
-# Amazon Macie :  DISCOVER sensitive data
-
-    Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data on Amazon S3.
-    Macie automatically detects a large and growing list of sensitive data types, including personally identifiable information (PII) such as names, addresses, and credit card numbers. 
 
 # AWS Storage Gateway
 
@@ -1859,6 +1843,24 @@
         Example: EventBridge enables out-of-the-box integration with SaaS providers, such as Zendesk, Datadog, Stripe, Auth0, Okta, and more.
 
     Amazon EventBridge also automatically ingests events from over 90 AWS services without requiring developers to create any resources in their account.
+
+
+# Amazon GuardDuty :  FIND malicious activity
+
+    Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts, 
+    workloads, and data stored in Amazon S3. With the cloud, the collection and aggregation of account and network activities is simplified, 
+    but it can be time-consuming for security teams to continuously analyze event log data for potential threats.
+    
+    Amazon GuardDuty analyzes tens of billions of events across multiple AWS data sources, such as AWS CloudTrail events, Amazon VPC Flow Logs, and DNS logs.
+
+# Amazon Inspector
+
+    security assessment service that helps improve the security and compliance 
+
+# Amazon Macie :  DISCOVER sensitive data
+
+    Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data on Amazon S3.
+    Macie automatically detects a large and growing list of sensitive data types, including personally identifiable information (PII) such as names, addresses, and credit card numbers. 
 
 # AWS Shield: Distributed Denial of Service DDOS
 

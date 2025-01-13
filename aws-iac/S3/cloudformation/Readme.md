@@ -4,6 +4,7 @@
 
     aws cloudformation create-stack --stack-name s3-bucket-with-policy-stack --template-body file://s3-bucket-with-policy.yml --capabilities CAPABILITY_NAMED_IAM
 
+    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.
 ## List S3 bucket
 
     aws s3 ls
@@ -15,5 +16,3 @@
 ## Describe stack status
 
     aws cloudformation describe-stacks --stack-name s3-bucket-with-policy-stack
-
-##   
